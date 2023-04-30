@@ -37,3 +37,8 @@ Route::get('/versiculo/{id}', [VersiculoController::class,  'show']);
 Route::put('/versiculo/{id}', [VersiculoController::class,  'update']);
 Route::post('/versiculo', [VersiculoController::class,  'store']);
 Route::delete('/versiculo/{id}', [VersiculoController::class,  'destroy']);
+
+
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
