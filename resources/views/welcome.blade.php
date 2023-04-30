@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    {!! link_to(url, title = null, attributes = [], secure = null, escape = true) !!}
+<h3 style="text-align: center;">API PROJECT</h3>
+<a href="https://phplaravel-970517-3485324.cloudwaysapps.com/api/livro">Livros da Biblia</a>
+<hr>
+<a href="https://phplaravel-970517-3485324.cloudwaysapps.com/api/versiculo">Versiculos da Biblia</a>
+<hr>
+<a href="https://phplaravel-970517-3485324.cloudwaysapps.com/api/testamento">Testamentos da Biblia</a>
+<hr>
+
+
 </body>
 </html>
