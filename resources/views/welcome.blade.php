@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-<h1> API - Project  </h1>
+    {!! link_to(url, title = null, attributes = [], secure = null, escape = true) !!}
 </body>
 </html>
