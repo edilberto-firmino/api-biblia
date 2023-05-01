@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request)
+{
+    return $request->user();
+});
 
 Route::get('/testamento', [TestamentoController::class,  'index']);
 Route::get('/testamento/{id}', [TestamentoController::class,  'show']);
@@ -38,7 +39,7 @@ Route::put('/versiculo/{id}', [VersiculoController::class,  'update']);
 Route::post('/versiculo', [VersiculoController::class,  'store']);
 Route::delete('/versiculo/{id}', [VersiculoController::class,  'destroy']);
 
-                                                                  
+
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });

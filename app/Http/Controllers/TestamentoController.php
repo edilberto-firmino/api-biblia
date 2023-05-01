@@ -23,17 +23,30 @@ class TestamentoController extends Controller
      */
     public function store(Request $request)
     {
-        return Testamento::create($request->all());
+        if(Testamento::create($request->all())){
+
+            return response()->json([
+                'message'=>'Testamento cadastrado com suscesso.'
+            ], 201);
+        }
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($testamento)
     {
 
-        return Testamento::findOrFail($id);
+        // return Testamento::findOrFail($id);
+
+        $testamento = Testamento::find($testamento);
+        if($testamento){
+            return $testamento;
+        }
+        return response()->json([
+            'message'=>'Erro ao Pesquisar Testamento'
+        ]);
 
     }
 
@@ -43,8 +56,13 @@ class TestamentoController extends Controller
     public function update(Request $request, $id)
     {
         $testamento = Testamento::findOrFail($id);
-        $testamento->update($request->all());
-        return $testamento;
+        if($testamento){
+            $testamento->update($request->all());
+            return $testamento;
+        }
+        return response()->json([
+            'message'=>'Erro ao Atualizar o Testamento'
+        ]);
     }
 
     /**
@@ -52,11 +70,17 @@ class TestamentoController extends Controller
      */
     public function destroy($id)
     {
-        return Testamento::destroy($id);
+        if(Testamento::destroy($id)){
+            return response()->json([
+                'message'=>'Testamento deletado com Sucesso'
+            ]);
+        }
+        return response()->json([
+            'message'=>'Testamento Não Encontrado ou Deletado'
+        ]);
 
+        }
 
-
-    }
 }
 
 

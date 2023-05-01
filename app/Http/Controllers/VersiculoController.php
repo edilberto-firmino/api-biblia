@@ -21,25 +21,44 @@ class VersiculoController extends Controller
      */
     public function store(Request $request)
     {
-        return Versiculo::create($request->all());
+        if(Versiculo::create($request->all())){
+
+            return response()->json([
+                'message'=>'Versiculo cadastrado com suscesso.'
+            ], 201);
+        }
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($versiculo)
     {
-        return Versiculo::findOrFail($id);
+
+        $versiculo = Versiculo::find($versiculo);
+        if($versiculo){
+            return $versiculo;
+        }
+        return response()->json([
+            'message'=>'Erro ao Pesquisar Versiculo'
+        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $versiculo = Versiculo::findOrFail($id);
-        $versiculo -> update($request->all());
-        return $versiculo;
+        $versiculo= Versiculo::find($id);
+        if($versiculo){
+            $versiculo->update($request->all());
+            return $versiculo;
+        }
+        return response()->json([
+            'message'=>'Erro ao Atualizar o Versiculo'
+        ]);
     }
 
     /**
@@ -47,6 +66,12 @@ class VersiculoController extends Controller
      */
     public function destroy($id)
     {
-        return Versiculo::destroy($id);
-    }
+        if(Versiculo::destroy($id)){
+            return response()->json([
+                'message'=>'Versiculo deletado com Sucesso'
+            ]);
+        }
+        return response()->json([
+            'message'=>'Versiculo Não Encontrado ou Deletado'
+        ]);    }
 }
