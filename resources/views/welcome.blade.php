@@ -12,7 +12,7 @@
 <hr>
 <a href="https://phplaravel-970517-3485697.cloudwaysapps.com/api/versiculo">Versiculos da Biblia</a>
 <hr>
-<a href="https://phplaravel-970517-3485324.cloudwaysapps.com/api/testamento">Testamentos da Biblia</a>
+<a href="https://phplaravel-970517-3485697.cloudwaysapps.com/api/testamento">Testamentos da Biblia</a>
 <hr>
 
 </body>
