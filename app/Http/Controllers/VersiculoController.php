@@ -73,5 +73,6 @@ class VersiculoController extends Controller
         }
         return response()->json([
             'message'=>'Versiculo Não Encontrado ou Deletado'
-        ]);    }
+        ]);
+    }
 }
