@@ -12,9 +12,6 @@
 #     uses: laravel/.github/.github/workflows/pull-requests.yml@main
 
 on: push
-  push:
-    branches:
-      -main
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
