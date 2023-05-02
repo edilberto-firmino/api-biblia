@@ -1,29 +1,13 @@
-# name: pull requests
+name: pull requests
 
-# on:
-#   pull_request_target:
-#     types: [opened]
+on:
+  pull_request_target:
+    types: [opened]
 
-# permissions:
-#   pull-requests: write
+permissions:
+  pull-requests: write
 
-# jobs:
-#   uneditable:
-#     uses: laravel/.github/.github/workflows/pull-requests.yml@main
-
-on: push
-name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
+  uneditable:
+    uses: laravel/.github/.github/workflows/pull-requests.yml@main
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: fsupfrskvm@970517.cloudwaysstagingapps.com
-        username: master_btyykbvgkg
-        password: vydbzNycYda7
