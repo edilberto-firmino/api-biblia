@@ -24,6 +24,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: 159.203.28.243
+        server: fsupfrskvm@970517.cloudwaysstagingapps.com
         username: master_btyykbvgkg
         password: vydbzNycYda7
