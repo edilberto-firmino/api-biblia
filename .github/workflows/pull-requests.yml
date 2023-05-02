@@ -25,5 +25,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: 159.203.28.243
-        username: edilberto_ti
-        password: Fogodi.123
+        username: master_btyykbvgkg
+        password: vydbzNycYda7
