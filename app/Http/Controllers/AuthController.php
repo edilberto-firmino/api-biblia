@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Tests\Support\Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -13,14 +13,45 @@ class AuthController extends Controller
         $fields = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
-            'password'=>'required|string'
+            'password'=>'required|string|confirmed'
         ]);
         $user = User::create([
             'name'=>$fields['name'],
             'email'=>$fields['email'],
-            'password'=>bcrypt([$fields['password']])
-
+            'password'=>password_hash($fields['password'],PASSWORD_DEFAULT)
         ]);
-        return response($user);
+
+        $token = $user->createtoken($request->nameToken)->plainTextToken;
+        $response=[
+            'user'=>$user,
+            'token'=>$token
+        ];
+
+        return response($response,201);
     }
+
+        public function login(Request $request)
+        {
+            $fields = $request->validate([
+                'email'=>'required|string',
+                'password'=>'required|string'
+            ]);
+            $user = User::where('email',$fields['email'])->first();
+
+            if(!$user ||!Hash::check($fields['password'],$user->password))
+            {
+                return response([
+                    'message'=>'E-mail ou senha invalido. '
+
+                ], 401);
+            }
+            $token = $user->createtoken('UsuarioLogado')->plainTextToken;
+            $response=[
+                'user'=>$user,
+                'token'=>$token
+            ];
+            return response($response,201);
+
+        }
 }
+

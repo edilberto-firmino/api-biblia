@@ -19,18 +19,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request)
-{
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request)
+// {
+//     return $request->user();
+// });
+// Route::get('/debug-sentry', function () {
+//     throw new Exception('My first Sentry error!');
+// });
 
+
+Route::post('/login',[AuthController::class, 'login']);
 Route::post('/register',[AuthController::class, 'register']);
 
-Route::apiResource('versiculo',VersiculoController::class);
-Route::apiResource('testamento',TestamentoController::class);
-Route::apiResource('livro',LivroController::class);
+Route::group(['middleware'=>['auth:sanctum']], function(){
 
+    Route::apiResources([
+        'versiculo'=>VersiculoController::class,
+        'testamento'=>TestamentoController::class,
+        'livro'=>LivroController::class
+    ]);
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
 });
+
+
