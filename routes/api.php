@@ -18,6 +18,7 @@ Route::group(['middleware'=>['auth:sanctum']], function(){
         'livro'=>LivroController::class
     ]);
 
+
 });
 
 
